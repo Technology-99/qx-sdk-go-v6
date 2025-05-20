@@ -3,7 +3,6 @@ package qxConfig
 import (
 	"errors"
 	"github.com/zeromicro/go-zero/core/logx"
-	"time"
 )
 
 const (
@@ -17,11 +16,12 @@ type Config struct {
 	// Access key ID
 	AccessKeyID string `json:",optional,inherit"`
 	// Secret Access Key
-	AccessKeySecret string        `json:",optional,inherit"`
-	Endpoint        string        `json:",default=core.csvw88.com"`
-	Protocol        string        `json:",default=https,options=http|https"`
-	Region          string        `json:",default=cn-shanghai"`
-	Timeout         time.Duration `json:",default=2000"`
+	AccessKeySecret string `json:",optional,inherit"`
+	Endpoint        string `json:",default=core.csvw88.com,optional"`
+	Protocol        string `json:",default=https,options=http|https,optional"`
+	Region          string `json:",default=cn-shanghai,optional"`
+	Timeout         int    `json:",default=2000,optional"`
+	Debug           bool   `json:",default=false,optional"`
 }
 
 func DefaultConfig(AccessKeyID, AccessKeySecret string) (config *Config) {
@@ -31,7 +31,8 @@ func DefaultConfig(AccessKeyID, AccessKeySecret string) (config *Config) {
 		Endpoint:        defaultEndpoint,
 		Protocol:        defaultProtocol,
 		Region:          defaultRegion,
-		Timeout:         time.Duration(defaultTimeout),
+		Timeout:         defaultTimeout,
+		Debug:           false,
 	}
 	return config
 }

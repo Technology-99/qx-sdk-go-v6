@@ -28,7 +28,7 @@ type QxClient struct {
 
 func NewQxClient(c *qxConfig.Config) *QxClient {
 	httpClient := &http.Client{
-		Timeout: c.Timeout * time.Millisecond,
+		Timeout: time.Duration(c.Timeout) * time.Millisecond,
 		Transport: &http.Transport{
 			TLSClientConfig: &tls.Config{InsecureSkipVerify: true},
 		},
@@ -43,7 +43,9 @@ func NewQxClient(c *qxConfig.Config) *QxClient {
 
 func (cli *QxClient) EasyNewRequest(ctx context.Context, svc string, relativePath string, method string, sendBody interface{}) ([]byte, error) {
 	apiUrl := fmt.Sprintf("%s://%s%s%s", cli.conf.Protocol, cli.conf.Endpoint, "/qx/v5/apis", relativePath)
-	logx.Infof("打印一下请求的url :%s", apiUrl)
+	if cli.conf.Debug {
+		logx.Infof("打印一下请求的url :%s", apiUrl)
+	}
 	fn := cli.NewRequest(ctx, svc, apiUrl, method, nil, sendBody)
 	res, err := fn()
 	if err != nil {
