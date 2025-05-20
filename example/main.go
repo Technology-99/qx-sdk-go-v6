@@ -2,10 +2,10 @@ package main
 
 import (
 	"context"
+	"github.com/Technology-99/qx-sdk-go-v6/qx"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxConfig"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxTypes"
 	"github.com/zeromicro/go-zero/core/logx"
-	"qx-sdk-go-v6/qx"
-	"qx-sdk-go-v6/qx/qxConfig"
-	"qx-sdk-go-v6/qx/qxTypes"
 )
 
 func main() {

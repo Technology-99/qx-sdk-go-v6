@@ -2,7 +2,7 @@ package qxCtx
 
 import (
 	"context"
-	"qx-sdk-go-v6/qx/qxClient"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxClient"
 )
 
 type QxCtx struct {

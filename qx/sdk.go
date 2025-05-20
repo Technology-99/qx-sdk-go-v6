@@ -1,13 +1,13 @@
 package qx
 
 import (
-	"qx-sdk-go-v6/qx/qxBase"
-	"qx-sdk-go-v6/qx/qxClient"
-	"qx-sdk-go-v6/qx/qxConfig"
-	"qx-sdk-go-v6/qx/qxCtx"
-	"qx-sdk-go-v6/qx/qxKms"
-	"qx-sdk-go-v6/qx/qxMas"
-	"qx-sdk-go-v6/qx/qxSas"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxBase"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxClient"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxConfig"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxCtx"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxKms"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxMas"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxSas"
 )
 
 type QxSdk struct {

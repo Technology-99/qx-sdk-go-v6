@@ -1,7 +1,7 @@
 package qxMas
 
 import (
-	"qx-sdk-go-v6/qx/qxCtx"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxCtx"
 )
 
 type (
