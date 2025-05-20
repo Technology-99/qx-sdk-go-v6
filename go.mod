@@ -1,8 +1,6 @@
-module qx-sdk-go-v6
+module github.com/Technology-99/qx-sdk-go-v6
 
 go 1.23.0
-
-toolchain go1.23.8
 
 require (
 	github.com/Technology-99/qxLib v0.1.7
