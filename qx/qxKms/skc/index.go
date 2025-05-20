@@ -75,7 +75,7 @@ func (m *defaultKmsSkcService) KmsSkcDecrypt(ctx context.Context, params *qxType
 		logx.Errorf("qx sdk: request error: %v", err)
 		return nil, nil
 	}
-	_ = json.Unmarshal(res, &result)
+	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsSkcDecrypt fail: %v", tmp)
 		return &tmp.Data, nil
