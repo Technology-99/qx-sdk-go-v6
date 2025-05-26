@@ -3,6 +3,7 @@ package akc
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxCtx"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxTypes"
 	"github.com/Technology-99/qxLib/qxCodes"
@@ -38,12 +39,12 @@ func (m *defaultKmsAkcService) KmsAkcCreateKeychain(ctx context.Context, params 
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsAkcCreateKeychain fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -54,12 +55,12 @@ func (m *defaultKmsAkcService) KmsAkcSign(ctx context.Context, params *qxTypes.K
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsAkcSign fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -70,12 +71,12 @@ func (m *defaultKmsAkcService) KmsAkcVerify(ctx context.Context, params *qxTypes
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsAkcVerify fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }

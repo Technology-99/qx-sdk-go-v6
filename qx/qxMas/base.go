@@ -3,6 +3,7 @@ package qxMas
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxCtx"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxTypes"
 	"github.com/Technology-99/qxLib/qxCodes"
@@ -42,12 +43,12 @@ func (m *defaultMasBaseService) CaptchaGenerate(ctx context.Context, params *qxT
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: captcha generate fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -58,12 +59,12 @@ func (m *defaultMasBaseService) SmsSend(ctx context.Context, params *qxTypes.Api
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: sms send fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -74,12 +75,12 @@ func (m *defaultMasBaseService) BehavioralVerificationInit(ctx context.Context, 
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk:Behavioral Verification Init fail: %v", result)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -90,12 +91,12 @@ func (m *defaultMasBaseService) BehavioralVerificationVerify(ctx context.Context
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: Behavioral Verification Verify fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -106,12 +107,12 @@ func (m *defaultMasBaseService) SmsVerificationInit(ctx context.Context, params 
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: sms init fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -122,12 +123,12 @@ func (m *defaultMasBaseService) SmsVerificationVerify(ctx context.Context, param
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: sms verify fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }

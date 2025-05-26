@@ -3,6 +3,7 @@ package qxSas
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxCtx"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxTypes"
 	"github.com/Technology-99/qxLib/qxCodes"
@@ -36,12 +37,12 @@ func (m *defaultSasBaseService) QueryBucket(ctx context.Context, params *qxTypes
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: request fail: %s", res)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -52,12 +53,12 @@ func (m *defaultSasBaseService) PresignerUpload(ctx context.Context, params *qxT
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: request fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -68,12 +69,12 @@ func (m *defaultSasBaseService) PresignerHeadObject(ctx context.Context, params 
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: request fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }

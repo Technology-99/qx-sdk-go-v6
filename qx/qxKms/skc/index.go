@@ -3,6 +3,7 @@ package skc
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxCtx"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxTypes"
 	"github.com/Technology-99/qxLib/qxCodes"
@@ -41,12 +42,12 @@ func (m *defaultKmsSkcService) KmsSkcCreateKeychain(ctx context.Context, params 
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsSkcCreateKeychain fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -57,12 +58,12 @@ func (m *defaultKmsSkcService) KmsSkcEncrypt(ctx context.Context, params *qxType
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsSkcCreateKeychain fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -73,12 +74,12 @@ func (m *defaultKmsSkcService) KmsSkcDecrypt(ctx context.Context, params *qxType
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsSkcDecrypt fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -89,12 +90,12 @@ func (m *defaultKmsSkcService) KmsSkcBatchEncrypt(ctx context.Context, params *q
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsSkcCreateKeychain fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -105,12 +106,12 @@ func (m *defaultKmsSkcService) KmsSkcBatchDecrypt(ctx context.Context, params *q
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsSkcCreateKeychain fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
@@ -121,12 +122,12 @@ func (m *defaultKmsSkcService) KmsSkcCompare(ctx context.Context, params *qxType
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
-		return nil, nil
+		return nil, err
 	}
 	_ = json.Unmarshal(res, &tmp)
 	if tmp.Code != qxCodes.QxEngineStatusOK {
 		logx.Errorf("qx sdk: KmsSkcCreateKeychain fail: %v", tmp)
-		return &tmp.Data, nil
+		return &tmp.Data, errors.New(tmp.Msg)
 	}
 	return &tmp.Data, nil
 }
