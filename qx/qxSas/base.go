@@ -78,3 +78,35 @@ func (m *defaultSasBaseService) PresignerHeadObject(ctx context.Context, params 
 	}
 	return &tmp.Data, nil
 }
+
+func (m *defaultSasBaseService) CreateBucketAndConfig(ctx context.Context, params *qxTypes.CreateBucketAndConfigReq) (result *qxTypes.CreateBucketAndConfigResp, err error) {
+	tmp := &qxRes.BaseResponse[qxTypes.CreateBucketAndConfigResp]{}
+	res, err := m.qxCtx.Cli.EasyNewRequest(ctx, m.Svc, "/sas/createBucketAndConfig", http.MethodPost, &params)
+
+	if err != nil {
+		logx.Errorf("qx sdk: request error: %v", err)
+		return nil, err
+	}
+	_ = json.Unmarshal(res, &tmp)
+	if tmp.Code != qxCodes.QxEngineStatusOK {
+		logx.Errorf("qx sdk: request fail: %v", tmp)
+		return &tmp.Data, errors.New(tmp.Msg)
+	}
+	return &tmp.Data, nil
+}
+
+func (m *defaultSasBaseService) CreateBucketNoConfig(ctx context.Context, params *qxTypes.CreateBucketNoConfigReq) (result *qxTypes.CreateBucketNoConfigResp, err error) {
+	tmp := &qxRes.BaseResponse[qxTypes.CreateBucketNoConfigResp]{}
+	res, err := m.qxCtx.Cli.EasyNewRequest(ctx, m.Svc, "/sas/createBucketNoConfig", http.MethodPost, &params)
+
+	if err != nil {
+		logx.Errorf("qx sdk: request error: %v", err)
+		return nil, err
+	}
+	_ = json.Unmarshal(res, &tmp)
+	if tmp.Code != qxCodes.QxEngineStatusOK {
+		logx.Errorf("qx sdk: request fail: %v", tmp)
+		return &tmp.Data, errors.New(tmp.Msg)
+	}
+	return &tmp.Data, nil
+}

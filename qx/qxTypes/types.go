@@ -63,8 +63,8 @@ type BehavioralVerificationVerifyResp struct {
 }
 
 type BootstrapReq struct {
-	AccessKey    string `form:"accessKey"`
-	AccessSecret string `form:"accessSecret"`
+	AccessKey    string `form:"access_key"`
+	AccessSecret string `form:"access_secret"`
 }
 
 type BootstrapResp struct {
@@ -80,6 +80,38 @@ type CodesResp struct {
 	Total    int64       `json:"total"`
 	Page     int32       `json:"page"`
 	PageSize int32       `json:"page_size"`
+}
+
+type CreateBucketAndConfigReq struct {
+	ConfigKey    string `json:"config_key"`
+	StorageType  string `json:"storage_type"`
+	AppId        string `json:"app_id,optional"`
+	AccessKey    string `json:"access_key"`
+	AccessSecret string `json:"access_secret"`
+	BucketKey    string `json:"bucket_key"`
+	Name         string `json:"name"`
+	Region       string `json:"region"`
+	IsAccelerate int32  `json:"is_accelerate"`
+	Prefix       string `json:"prefix"`
+	StaticDomain string `json:"static_domain"`
+	CdnDomain    string `json:"cdn_domain"`
+}
+
+type CreateBucketAndConfigResp struct {
+}
+
+type CreateBucketNoConfigReq struct {
+	ConfigKey    string `json:"config_key"`
+	BucketKey    string `json:"bucket_key"`
+	Name         string `json:"name"`
+	Region       string `json:"region"`
+	IsAccelerate int32  `json:"is_accelerate"`
+	Prefix       string `json:"prefix"`
+	StaticDomain string `json:"static_domain"`
+	CdnDomain    string `json:"cdn_domain"`
+}
+
+type CreateBucketNoConfigResp struct {
 }
 
 type EncryptReq struct {
