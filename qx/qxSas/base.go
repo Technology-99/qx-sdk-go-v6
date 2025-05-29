@@ -17,6 +17,8 @@ type (
 		QueryBucket(ctx context.Context, params *qxTypes.SasQueryBucketReq) (result *qxTypes.SasQueryBucketResp, err error)
 		PresignerUpload(ctx context.Context, params *qxTypes.SasPresignerUploadReq) (result *qxTypes.SasPresignerUploadResp, err error)
 		PresignerHeadObject(ctx context.Context, params *qxTypes.SasPresignerHeadObjectReq) (result *qxTypes.SasPresignerHeadObjectResp, err error)
+		CreateBucketAndConfig(ctx context.Context, params *qxTypes.CreateBucketAndConfigReq) (result *qxTypes.CreateBucketAndConfigResp, err error)
+		CreateBucketNoConfig(ctx context.Context, params *qxTypes.CreateBucketNoConfigReq) (result *qxTypes.CreateBucketNoConfigResp, err error)
 	}
 	defaultSasBaseService struct {
 		Svc   string
