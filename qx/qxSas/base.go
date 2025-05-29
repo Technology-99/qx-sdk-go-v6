@@ -17,8 +17,8 @@ type (
 		QueryBucket(ctx context.Context, params *qxTypes.SasQueryBucketReq) (result *qxTypes.SasQueryBucketResp, err error)
 		PresignerUpload(ctx context.Context, params *qxTypes.SasPresignerUploadReq) (result *qxTypes.SasPresignerUploadResp, err error)
 		PresignerHeadObject(ctx context.Context, params *qxTypes.SasPresignerHeadObjectReq) (result *qxTypes.SasPresignerHeadObjectResp, err error)
-		CreateBucketAndConfig(ctx context.Context, params *qxTypes.CreateBucketAndConfigReq) (result *qxTypes.CreateBucketAndConfigResp, err error)
-		CreateBucketNoConfig(ctx context.Context, params *qxTypes.CreateBucketNoConfigReq) (result *qxTypes.CreateBucketNoConfigResp, err error)
+		CreateBucketAndConfig(ctx context.Context, params *qxTypes.CreateExistBucketAndConfigReq) (result *qxTypes.CreateExistBucketAndConfigResp, err error)
+		CreateBucketNoConfig(ctx context.Context, params *qxTypes.CreateExistBucketNoConfigReq) (result *qxTypes.CreateExistBucketNoConfigResp, err error)
 	}
 	defaultSasBaseService struct {
 		Svc   string
@@ -81,9 +81,9 @@ func (m *defaultSasBaseService) PresignerHeadObject(ctx context.Context, params 
 	return &tmp.Data, nil
 }
 
-func (m *defaultSasBaseService) CreateBucketAndConfig(ctx context.Context, params *qxTypes.CreateBucketAndConfigReq) (result *qxTypes.CreateBucketAndConfigResp, err error) {
-	tmp := &qxRes.BaseResponse[qxTypes.CreateBucketAndConfigResp]{}
-	res, err := m.qxCtx.Cli.EasyNewRequest(ctx, m.Svc, "/sas/createBucketAndConfig", http.MethodPost, &params)
+func (m *defaultSasBaseService) CreateBucketAndConfig(ctx context.Context, params *qxTypes.CreateExistBucketAndConfigReq) (result *qxTypes.CreateExistBucketAndConfigResp, err error) {
+	tmp := &qxRes.BaseResponse[qxTypes.CreateExistBucketAndConfigResp]{}
+	res, err := m.qxCtx.Cli.EasyNewRequest(ctx, m.Svc, "/sas/createExistBucketAndConfig", http.MethodPost, &params)
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)
@@ -97,9 +97,9 @@ func (m *defaultSasBaseService) CreateBucketAndConfig(ctx context.Context, param
 	return &tmp.Data, nil
 }
 
-func (m *defaultSasBaseService) CreateBucketNoConfig(ctx context.Context, params *qxTypes.CreateBucketNoConfigReq) (result *qxTypes.CreateBucketNoConfigResp, err error) {
-	tmp := &qxRes.BaseResponse[qxTypes.CreateBucketNoConfigResp]{}
-	res, err := m.qxCtx.Cli.EasyNewRequest(ctx, m.Svc, "/sas/createBucketNoConfig", http.MethodPost, &params)
+func (m *defaultSasBaseService) CreateBucketNoConfig(ctx context.Context, params *qxTypes.CreateExistBucketNoConfigReq) (result *qxTypes.CreateExistBucketNoConfigResp, err error) {
+	tmp := &qxRes.BaseResponse[qxTypes.CreateExistBucketNoConfigResp]{}
+	res, err := m.qxCtx.Cli.EasyNewRequest(ctx, m.Svc, "/sas/createExistBucketNoConfig", http.MethodPost, &params)
 
 	if err != nil {
 		logx.Errorf("qx sdk: request error: %v", err)

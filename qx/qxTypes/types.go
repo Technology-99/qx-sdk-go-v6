@@ -82,7 +82,7 @@ type CodesResp struct {
 	PageSize int32       `json:"page_size"`
 }
 
-type CreateBucketAndConfigReq struct {
+type CreateExistBucketAndConfigReq struct {
 	ConfigKey    string `json:"config_key"`
 	StorageType  string `json:"storage_type"`
 	AppId        string `json:"app_id,optional"`
@@ -97,10 +97,10 @@ type CreateBucketAndConfigReq struct {
 	CdnDomain    string `json:"cdn_domain"`
 }
 
-type CreateBucketAndConfigResp struct {
+type CreateExistBucketAndConfigResp struct {
 }
 
-type CreateBucketNoConfigReq struct {
+type CreateExistBucketNoConfigReq struct {
 	ConfigKey    string `json:"config_key"`
 	BucketKey    string `json:"bucket_key"`
 	Name         string `json:"name"`
@@ -111,7 +111,7 @@ type CreateBucketNoConfigReq struct {
 	CdnDomain    string `json:"cdn_domain"`
 }
 
-type CreateBucketNoConfigResp struct {
+type CreateExistBucketNoConfigResp struct {
 }
 
 type EncryptReq struct {
