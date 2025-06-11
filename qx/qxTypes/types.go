@@ -368,6 +368,7 @@ type ModelIndustry struct {
 	CategoryScope     string `json:"category_scope"`     // 类目适用范围
 	Remark            string `json:"remark"`             // 备注
 	ParentId          uint32 `json:"parent_id"`
+	Sort              int64  `json:"sort"`
 }
 
 type ModelTag struct {
