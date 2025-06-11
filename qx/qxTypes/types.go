@@ -377,6 +377,7 @@ type ModelTag struct {
 	UpdatedAtUnix int64  `json:"updated_at_unix"`
 	Name          string `json:"name"`   // 标签名称
 	Status        int32  `json:"status"` // 状态
+	Sort          int64  `json:"sort"`
 }
 
 type ModelZone struct {
