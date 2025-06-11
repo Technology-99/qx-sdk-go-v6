@@ -3,6 +3,48 @@
 
 package qxTypes
 
+type AllowCreateModelIndustry struct {
+	Name              string `json:"name"`                        // 名称
+	Qualification     string `json:"qualification"`               // 资质要求
+	QualificationLink string `json:"qualification_link,optional"` // 资质要求，法律依据及示例的说明链接
+	CategoryScope     string `json:"category_scope"`              // 类目适用范围
+	Remark            string `json:"remark,optional"`             // 备注
+	ParentId          uint32 `json:"parent_id,optional"`
+	Sort              int64  `json:"sort,optional"`
+}
+
+type AllowCreateModelTag struct {
+	Name string `json:"name"`
+	Sort int64  `json:"sort"`
+}
+
+type AllowUpdateModelIndustry struct {
+	Id                uint32 `json:"id"`
+	Name              string `json:"name,optional"`           // 名称
+	Qualification     string `json:"qualification,optional"`  // 资质要求
+	QualificationLink string `json:"qualification_link"`      // 资质要求，法律依据及示例的说明链接
+	CategoryScope     string `json:"category_scope,optional"` // 类目适用范围
+	Remark            string `json:"remark"`                  // 备注
+	ParentId          uint32 `json:"parent_id"`
+	Sort              int64  `json:"sort,optional"`
+}
+
+type AllowUpdateModelTag struct {
+	Id   uint32 `json:"id"`
+	Name string `json:"name,optional"`
+	Sort int64  `json:"sort,optional"`
+}
+
+type AllowUpdateStatusModelIndustry struct {
+	Id     uint32 `json:"id"`
+	Status int32  `json:"status"`
+}
+
+type AllowUpdateStatusModelTag struct {
+	Id     uint32 `json:"id"`
+	Status int32  `json:"status"`
+}
+
 type ApiCaptchaGenerateReq struct {
 	Key       string  `json:"key,optional"`
 	DotCount  int32   `json:"dot_count,optional"`
@@ -123,6 +165,43 @@ type EncryptResp struct {
 }
 
 type HealthzResp struct {
+}
+
+type IndustryApiCreateResp struct {
+	Id uint32 `json:"id"`
+}
+
+type IndustryApiFormIdReq struct {
+	Id uint32 `form:"id"`
+}
+
+type IndustryApiJsonIdReq struct {
+	Id uint32 `json:"id"`
+}
+
+type IndustryApiJsonIdsReq struct {
+	Ids []uint32 `json:"ids"`
+}
+
+type IndustryApiOKResp struct {
+}
+
+type IndustryCommonQueryListResp struct {
+	List     []ModelIndustry `json:"list"`
+	Total    int64           `json:"total"`
+	Page     int32           `json:"page"`
+	PageSize int32           `json:"page_size"`
+}
+
+type IndustryCommonSearchParams struct {
+	Page           int32  `json:"page,optional"`
+	PageSize       int32  `json:"page_size,optional"`
+	StartCreatedAt int64  `json:"start_created_at,optional"`
+	EndCreatedAt   int64  `json:"end_created_at,optional"`
+	Keyword        string `json:"keyword,optional"`
+	Status         int32  `json:"status,optional"`
+	ParentId       uint32 `json:"parent_id,optional"`
+	OnlyParent     bool   `json:"only_parent,optional"` // 是否只查询父级行业
 }
 
 type IpWhiteReq struct {
@@ -278,6 +357,27 @@ type ModelCode struct {
 	Msg  string `json:"msg"`
 }
 
+type ModelIndustry struct {
+	Id                uint32 `json:"id"`
+	CreatedAtUnix     int64  `json:"created_at_unix"`
+	UpdatedAtUnix     int64  `json:"updated_at_unix"`
+	Status            int32  `json:"status"`             // 状态
+	Name              string `json:"name"`               // 名称
+	Qualification     string `json:"qualification"`      // 资质要求
+	QualificationLink string `json:"qualification_link"` // 资质要求，法律依据及示例的说明链接
+	CategoryScope     string `json:"category_scope"`     // 类目适用范围
+	Remark            string `json:"remark"`             // 备注
+	ParentId          uint32 `json:"parent_id"`
+}
+
+type ModelTag struct {
+	Id            uint32 `json:"id"`
+	CreatedAtUnix int64  `json:"created_at_unix"`
+	UpdatedAtUnix int64  `json:"updated_at_unix"`
+	Name          string `json:"name"`   // 标签名称
+	Status        int32  `json:"status"` // 状态
+}
+
 type ModelZone struct {
 	Label string `json:"label"`
 	Code  string `json:"code"`
@@ -342,6 +442,56 @@ type SmsVerifyReq struct {
 
 type SmsVerifyResp struct {
 	Result bool `json:"result"`
+}
+
+type TagApiCreateResp struct {
+	Id uint32 `json:"id"`
+}
+
+type TagApiFormIdReq struct {
+	Id uint32 `form:"id"`
+}
+
+type TagApiJsonIdReq struct {
+	Id uint32 `json:"id"`
+}
+
+type TagApiJsonIdsReq struct {
+	Ids []uint32 `json:"ids"`
+}
+
+type TagApiOKResp struct {
+}
+
+type TagCommonQueryListResp struct {
+	List     []ModelTag `json:"list"`
+	Total    int64      `json:"total"`
+	Page     int32      `json:"page"`
+	PageSize int32      `json:"page_size"`
+}
+
+type TagCommonSearchParams struct {
+	Page           int32  `json:"page,optional"`
+	PageSize       int32  `json:"page_size,optional"`
+	StartCreatedAt int64  `json:"start_created_at,optional"`
+	EndCreatedAt   int64  `json:"end_created_at,optional"`
+	Keyword        string `json:"keyword,optional"`
+	Status         int32  `json:"status,optional"`
+}
+
+type TpasWechatJobWebhookReq struct {
+	Timestamp int64  `json:"timestamp"`
+	Nonce     string `json:"nonce"` // 随机字符串
+	Params    string `json:"params"`
+}
+
+type TpasWechatJobWebhookResp struct {
+}
+
+type UpsBaseBootstrapReq struct {
+}
+
+type UpsBaseBootstrapResp struct {
 }
 
 type ZonesReq struct {

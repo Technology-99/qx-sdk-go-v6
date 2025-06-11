@@ -8,6 +8,7 @@ import (
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxKms"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxMas"
 	"github.com/Technology-99/qx-sdk-go-v6/qx/qxSas"
+	"github.com/Technology-99/qx-sdk-go-v6/qx/qxUps"
 )
 
 type QxSdk struct {
@@ -18,6 +19,7 @@ type QxSdk struct {
 	KmsService    qxKms.KmsService
 	MasService    qxMas.MasService
 	SasService    qxSas.SasService
+	UpsService    qxUps.UpsService
 }
 
 func NewQxSdk(c *qxConfig.Config) (*QxSdk, error) {
@@ -37,6 +39,7 @@ func NewQxSdk(c *qxConfig.Config) (*QxSdk, error) {
 		KmsService:    qxKms.NewKmsService(qxC),
 		MasService:    qxMas.NewMasService(qxC),
 		SasService:    qxSas.NewSasService(qxC),
+		UpsService:    qxUps.NewUpsService(qxC),
 	}
 	return sdk, nil
 }

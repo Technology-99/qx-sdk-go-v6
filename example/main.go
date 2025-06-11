@@ -17,14 +17,32 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	allCodes, err := sdk.QxBaseService.Codes(context.Background(), &qxTypes.CodesReq{})
-	if err != nil {
-		panic(err)
-	}
-	logx.Infof("%+v", allCodes)
+	//allCodes, err := sdk.QxBaseService.Codes(context.Background(), &qxTypes.CodesReq{})
+	//if err != nil {
+	//	panic(err)
+	//}
+	//logx.Infof("%+v", allCodes)
 
-	queryBucketResult, err := sdk.SasService.QueryBucket(context.Background(), &qxTypes.SasQueryBucketReq{
-		BucketKey: "default",
+	//queryBucketResult, err := sdk.SasService.QueryBucket(context.Background(), &qxTypes.SasQueryBucketReq{
+	//	BucketKey: "default",
+	//})
+	//if err != nil {
+	//	panic(err)
+	//}
+	//logx.Infof("%+v", queryBucketResult)
+
+	//queryBucketResult, err := sdk.UpsService.UpsTagService.Query(context.Background(), &qxTypes.TagApiFormIdReq{
+	//	Id: 2,
+	//})
+	//if err != nil {
+	//	panic(err)
+	//}
+	//logx.Infof("%+v", queryBucketResult)
+
+	queryBucketResult, err := sdk.UpsService.UpsIndustryService.QueryList(context.Background(), &qxTypes.IndustryCommonSearchParams{
+		Page:       1,
+		PageSize:   5,
+		OnlyParent: true,
 	})
 	if err != nil {
 		panic(err)
