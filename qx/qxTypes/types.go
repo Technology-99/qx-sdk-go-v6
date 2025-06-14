@@ -386,6 +386,16 @@ type ModelZone struct {
 	Area  string `json:"area"`
 }
 
+type SasPresignerGetObjectReq struct {
+	BucketKey string `json:"bucket_key"`
+	Path      string `json:"path"`
+}
+
+type SasPresignerGetObjectResp struct {
+	Url    string `json:"url"`
+	Method string `json:"method"`
+}
+
 type SasPresignerHeadObjectReq struct {
 	BucketKey string `json:"bucket_key"`
 	Path      string `json:"path"`
@@ -479,6 +489,7 @@ type TagCommonSearchParams struct {
 	EndCreatedAt   int64  `json:"end_created_at,optional"`
 	Keyword        string `json:"keyword,optional"`
 	Status         int32  `json:"status,optional"`
+	PrefixKeyword  string `json:"prefix_keyword,optional"`
 }
 
 type TpasWechatJobWebhookReq struct {
