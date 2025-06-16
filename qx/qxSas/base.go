@@ -15,6 +15,7 @@ import (
 type (
 	SasBaseService interface {
 		QueryBucket(ctx context.Context, params *qxTypes.SasQueryBucketReq) (result *qxTypes.SasQueryBucketResp, err error)
+		PresignerGet(ctx context.Context, params *qxTypes.SasPresignerGetObjectReq) (result *qxTypes.SasPresignerGetObjectResp, err error)
 		PresignerUpload(ctx context.Context, params *qxTypes.SasPresignerUploadReq) (result *qxTypes.SasPresignerUploadResp, err error)
 		PresignerHeadObject(ctx context.Context, params *qxTypes.SasPresignerHeadObjectReq) (result *qxTypes.SasPresignerHeadObjectResp, err error)
 		CreateBucketAndConfig(ctx context.Context, params *qxTypes.CreateExistBucketAndConfigReq) (result *qxTypes.CreateExistBucketAndConfigResp, err error)
@@ -31,6 +32,23 @@ func NewSasBaseService(qxCtx *qxCtx.QxCtx) SasBaseService {
 		Svc:   "sas",
 		qxCtx: qxCtx,
 	}
+}
+
+// @doc "预签名访问"
+func (m *defaultSasBaseService) PresignerGet(ctx context.Context, params *qxTypes.SasPresignerGetObjectReq) (result *qxTypes.SasPresignerGetObjectResp, err error) {
+	tmp := &qxRes.BaseResponse[qxTypes.SasPresignerGetObjectResp]{}
+	res, err := m.qxCtx.Cli.EasyNewRequest(ctx, m.Svc, "/sas/presignerGetObject", http.MethodPost, &params)
+
+	if err != nil {
+		logx.Errorf("qx sdk: request error: %v", err)
+		return nil, err
+	}
+	_ = json.Unmarshal(res, &tmp)
+	if tmp.Code != qxCodes.QxEngineStatusOK {
+		logx.Errorf("qx sdk: request fail: %s", res)
+		return &tmp.Data, errors.New(tmp.Msg)
+	}
+	return &tmp.Data, nil
 }
 
 func (m *defaultSasBaseService) QueryBucket(ctx context.Context, params *qxTypes.SasQueryBucketReq) (result *qxTypes.SasQueryBucketResp, err error) {
