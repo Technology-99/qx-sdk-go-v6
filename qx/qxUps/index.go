@@ -7,15 +7,17 @@ import (
 type (
 	UpsService struct {
 		UpsBaseService
-		UpsTagService      UpsTagService
-		UpsIndustryService UpsIndustryService
+		UpsTagService       UpsTagService
+		UpsIndustryService  UpsIndustryService
+		UpsShortLinkService UpsShortLinkService
 	}
 )
 
 func NewUpsService(qxCtx *qxCtx.QxCtx) UpsService {
 	return UpsService{
-		UpsBaseService:     NewUpsBaseService(qxCtx),
-		UpsTagService:      NewUpsTagService(qxCtx),
-		UpsIndustryService: NewUpsIndustryService(qxCtx),
+		UpsBaseService:      NewUpsBaseService(qxCtx),
+		UpsTagService:       NewUpsTagService(qxCtx),
+		UpsIndustryService:  NewUpsIndustryService(qxCtx),
+		UpsShortLinkService: NewUpsShortLinkService(qxCtx),
 	}
 }
