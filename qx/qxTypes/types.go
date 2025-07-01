@@ -13,6 +13,13 @@ type AllowCreateModelIndustry struct {
 	Sort              int64  `json:"sort,optional"`
 }
 
+type AllowCreateModelShortLink struct {
+	OriginalUrl   string `json:"original_url"`
+	SlType        int32  `json:"sl_type,optional,options=1|2|3"`
+	ExpireAtUnix  int64  `json:"expire_at_unix,optional"`
+	CreatorUserId string `json:"creator_user_id,optional"`
+}
+
 type AllowCreateModelTag struct {
 	Name string `json:"name"`
 	Sort int64  `json:"sort"`
@@ -29,6 +36,14 @@ type AllowUpdateModelIndustry struct {
 	Sort              int64  `json:"sort,optional"`
 }
 
+type AllowUpdateModelShortLink struct {
+	Id            uint32 `json:"id"`
+	OriginalUrl   string `json:"original_url,optional"`
+	SlType        int32  `json:"sl_type,optional,options=1|2|3"`
+	ExpireAtUnix  int64  `json:"expire_at_unix"`
+	CreatorUserId string `json:"creator_user_id"`
+}
+
 type AllowUpdateModelTag struct {
 	Id   uint32 `json:"id"`
 	Name string `json:"name,optional"`
@@ -36,6 +51,11 @@ type AllowUpdateModelTag struct {
 }
 
 type AllowUpdateStatusModelIndustry struct {
+	Id     uint32 `json:"id"`
+	Status int32  `json:"status"`
+}
+
+type AllowUpdateStatusModelShortLink struct {
 	Id     uint32 `json:"id"`
 	Status int32  `json:"status"`
 }
@@ -162,6 +182,14 @@ type EncryptReq struct {
 
 type EncryptResp struct {
 	Data string `json:"data"`
+}
+
+type GetRedirectResultReq struct {
+	ShortId string `json:"short_id"`
+}
+
+type GetRedirectResultResp struct {
+	Url string `json:"url"`
 }
 
 type HealthzResp struct {
@@ -371,6 +399,17 @@ type ModelIndustry struct {
 	Sort              int64  `json:"sort"`
 }
 
+type ModelShortLink struct {
+	Id            uint32 `json:"id"`
+	CreatedAtUnix int64  `json:"created_at_unix"`
+	UpdatedAtUnix int64  `json:"updated_at_unix"`
+	Key           string `json:"key"`
+	OriginalUrl   string `json:"original_url"`
+	SlType        int32  `json:"sl_type"`
+	ExpireAtUnix  int64  `json:"expire_at_unix"`
+	CreatorUserId string `json:"creator_user_id"`
+}
+
 type ModelTag struct {
 	Id            uint32 `json:"id"`
 	CreatedAtUnix int64  `json:"created_at_unix"`
@@ -384,6 +423,12 @@ type ModelZone struct {
 	Label string `json:"label"`
 	Code  string `json:"code"`
 	Area  string `json:"area"`
+}
+
+type NotFoundResp struct {
+}
+
+type NotFoundpReq struct {
 }
 
 type SasPresignerGetObjectReq struct {
@@ -430,6 +475,45 @@ type SasQueryBucketResp struct {
 	BucketAccelerateDomain string `json:"bucket_accelerate_domain"`
 	StaticDomain           string `json:"static_domain"`
 	CdnDomain              string `json:"cdn_domain"`
+}
+
+type ShortLinkApiCreateResp struct {
+	Id uint32 `json:"id"`
+}
+
+type ShortLinkApiFormIdReq struct {
+	Id uint32 `form:"id"`
+}
+
+type ShortLinkApiFormKeyReq struct {
+	Key string `form:"key"`
+}
+
+type ShortLinkApiJsonIdReq struct {
+	Id uint32 `json:"id"`
+}
+
+type ShortLinkApiJsonIdsReq struct {
+	Ids []uint32 `json:"ids"`
+}
+
+type ShortLinkApiOKResp struct {
+}
+
+type ShortLinkCommonQueryListResp struct {
+	List     []ModelShortLink `json:"list"`
+	Total    int64            `json:"total"`
+	Page     int32            `json:"page"`
+	PageSize int32            `json:"page_size"`
+}
+
+type ShortLinkCommonSearchParams struct {
+	Page           int32  `json:"page,optional"`
+	PageSize       int32  `json:"page_size,optional"`
+	StartCreatedAt int64  `json:"start_created_at,optional"`
+	EndCreatedAt   int64  `json:"end_created_at,optional"`
+	Keyword        string `json:"keyword,optional"`
+	Status         int32  `json:"status,optional"`
 }
 
 type SmsInitReq struct {
@@ -505,6 +589,20 @@ type UpsBaseBootstrapReq struct {
 }
 
 type UpsBaseBootstrapResp struct {
+}
+
+type ViewNotFoundReq struct {
+}
+
+type ViewNotFoundResp struct {
+}
+
+type ViewShortLinkReq struct {
+	DomainId string `path:"domain_id"`
+	ShortId  string `path:"short_id"`
+}
+
+type ViewShortLinkResp struct {
 }
 
 type ZonesReq struct {

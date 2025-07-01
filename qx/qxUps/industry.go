@@ -57,7 +57,7 @@ func (m *defaultUpsIndustryService) Delete(ctx context.Context, params *qxTypes.
 	tmp := &qxRes.BaseResponse[qxTypes.IndustryApiOKResp]{}
 	relativePath := "/ups/industry/delete"
 	if params.Id != 0 {
-		relativePath = fmt.Sprintf("/ups/industry/query?id=%d", params.Id)
+		relativePath = fmt.Sprintf("/ups/industry/delete?id=%d", params.Id)
 	}
 	res, err := m.qxCtx.Cli.EasyNewRequest(ctx, m.Svc, relativePath, http.MethodPost, &params)
 
