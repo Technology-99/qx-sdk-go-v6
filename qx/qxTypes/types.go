@@ -478,7 +478,8 @@ type SasQueryBucketResp struct {
 }
 
 type ShortLinkApiCreateResp struct {
-	Id uint32 `json:"id"`
+	Id      uint32 `json:"id"`
+	ShortId string `json:"short_id"`
 }
 
 type ShortLinkApiFormIdReq struct {
